@@ -1,19 +1,16 @@
 {
-  "name": "Sample website ETHGlobal Lisbon 2023",
+  "name": "ETHGlobal Lisbon 2023 Extension",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --watch",
+    "buildOnce": "webpack"
   },
   "keywords": [],
   "author": "@lennardevertz",
   "license": "MIT",
-  "devDependencies": {
-    "webpack": "^5.82.1",
-    "webpack-cli": "^5.1.1"
-  },
   "dependencies": {
-    "web3": "^1.10.0"
+    "idriss-crypto": "^1.8.10"
   }
 }
