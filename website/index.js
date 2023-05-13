@@ -247,7 +247,8 @@ async function switchNetwork(web3, networkName, provider) {
 
   // Switch network if necessary
   if (currentNetworkId !== desiredNetworkId) {
-    await provider.eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: `0x${desiredNetworkId.toString(16)}` }] });
+
+    await provider.request({ method: "wallet_switchEthereumChain", params: [{ chainId: `0x${desiredNetworkId.toString(16)}` }] });
   }
 }
 
