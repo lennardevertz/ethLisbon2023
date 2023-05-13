@@ -1,10 +1,11 @@
 {
-  "name": "Sample website ETHGlobal Lisbon 2023",
+  "name": "ETHGlobalLisbon2023Website",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --watch",
+    "buildOnce": "webpack"
   },
   "keywords": [],
   "author": "@lennardevertz",
