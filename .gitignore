@@ -1,7 +1,14 @@
 # Default ignored files
 /website/node_modules
-/website/package-lock.json
+/extension/yarn.lock
+/website/yarn.lock
+/contracts/yarn.lock
 /extension/node_modules
 /extension/package-lock.json
+/website/package-lock.json
 /extension/buildResults/
 .idea/
+/contracts/artifacts
+/contracts/cache
+/contracts/node_modules
+/contracts/package-lock.json
