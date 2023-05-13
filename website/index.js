@@ -1,11 +1,11 @@
-const Web3 = require('web3');
+import Web3 from "web3/dist/web3.min.js";
 import {tokens} from './utils.js';
 
 let params = new URL(document.location).searchParams;
 let recipient = params.get("recipient");
 let amount = params.get("amount");
 let network = params.get("network");
-let token = network == "polygon"? "MATIC" : "ETH";
+let token = network == "Polygon"? "MATIC" : "ETH";
 let other = params.get("other")
 let message = params.get("message") || "";
 let provider;
@@ -23,7 +23,8 @@ let oracleAddress = {
 
 async function init() {
     provider = window.ethereum
-    web3 = new Web3(provider);
+    await provider.enable()
+    web3 = await new Web3(provider);
     connectedAccount = await web3.eth.getAccounts();
     console.log(connectedAccount)
     await sendDonation();
@@ -34,7 +35,9 @@ async function sendDonation() {
         integer: amountInteger,
         normal: amountNormal
     } = await calculateAmount(token, amount)
-    console.log(amountInteger, amountNormal)
+    console.log("Calculate amount result")
+    console.log(amountInteger.toString(), amountNormal.toString())
+    // Do some transaction here using amountInteger
 }
 
 // load oracle price data
@@ -167,15 +170,15 @@ async function calculateAmount(ticker, amount) {
 
     let oracle = await loadOracle(ticker);
     priceSt = await getPrice(oracle);
-
     let decimals = tokens.filter((x) => x.symbol == ticker)[0]?.decimals;
     priceSt = Number.parseFloat(priceSt).toFixed(decimals)
+    console.log(priceSt, decimals)
 
     let BN = defaultWeb3.utils.BN;
     let ten = new BN(10);
     let base = ten.pow(new BN(decimals));
-    let integer = getAmount(amount.toString(), priceSt, decimals);
-    let normal = (integer/base).toString();
+    let integer = await getAmount(amount.toString(), priceSt, decimals);
+    let normal = integer.div(base)
     return { integer, normal };
 }
 
@@ -202,9 +205,10 @@ async function getAmount(amount, tokenPrice, decimals) {
 
 
     console.log(decimalCountValue)
-    console.log(new BN(multiplierValue.toString()))
+    let retVal = (new BN(multiplierPrice.toString())).mul(baseTemp).mul(tokenValueToInt).div(tokenPriceToInt).div(new BN(multiplierValue.toString()))
 
-    return (new BN(multiplierPrice.toString())).mul(baseTemp).mul(tokenValueToInt).div(tokenPriceToInt).div(new BN(multiplierValue.toString()));
+    return retVal;
 }
-
-init()
+window.addEventListener('load', async () => {
+    init()
+});
