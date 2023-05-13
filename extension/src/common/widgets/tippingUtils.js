@@ -8,6 +8,14 @@ export const tokens = [
         "logoURI": "https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
     },
     {
+        "chainId": 59140,
+        "network": "Linea",
+        "name": "Ethereum",
+        "symbol": "ETH",
+        "decimals": 18,
+        "logoURI": "https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
+    },
+    {
         "chainId": 137,
         "network": "Polygon",
         "name": "MATIC",

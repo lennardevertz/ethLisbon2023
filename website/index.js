@@ -1,11 +1,13 @@
 import Web3 from "web3/dist/web3.min.js";
-import {tokens} from './utils.js';
+import {tokens, donationAbi} from './utils.js';
+import {customTwitterAccounts} from "../extension/src/common/utils.js";
 
 let params = new URL(document.location).searchParams;
 let recipient = params.get("recipient");
 let amount = params.get("amount");
 let network = params.get("network");
 let token = network == "Polygon"? "MATIC" : "ETH";
+let recipientAddress = params.get("recipient")
 let other = params.get("other")
 let message = params.get("message") || "";
 let provider;
@@ -20,12 +22,17 @@ let oracleAddress = {
     MATIC: "0xab594600376ec9fd91f8e885dadf0ce036862de0"
 };
 
+// donation contracts ( need deployment)
+let donationAddresses = {
+    linea: "0x31A9021E79620fd95d4835b062f12c91b789A31b"
+}
 
 async function init() {
     provider = window.ethereum
     await provider.enable()
     web3 = await new Web3(provider);
-    connectedAccount = await web3.eth.getAccounts();
+    let accounts = await web3.eth.getAccounts();
+    connectedAccount = accounts[0]
     console.log(connectedAccount)
     await sendDonation();
 }
@@ -37,7 +44,7 @@ async function sendDonation() {
     } = await calculateAmount(token, amount)
     console.log("Calculate amount result")
     console.log(amountInteger.toString(), amountNormal.toString())
-    // Do some transaction here using amountInteger
+    await callContractFunction(web3, network, amountInteger);
 }
 
 // load oracle price data
@@ -209,6 +216,59 @@ async function getAmount(amount, tokenPrice, decimals) {
 
     return retVal;
 }
+
+async function switchNetwork(web3, networkName) {
+  // Get current network ID
+  const currentNetworkId = await web3.eth.net.getId();
+
+  // Get network ID for desired network
+  let desiredNetworkId;
+  switch (networkName.toLowerCase()) {
+    case "linea":
+      desiredNetworkId = 59140;
+      break;
+    default:
+      throw new Error("Invalid network name");
+  }
+
+  // Switch network if necessary
+  if (currentNetworkId !== desiredNetworkId) {
+    await web3.eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: `0x${desiredNetworkId.toString(16)}` }] });
+  }
+}
+
+
+async function callContractFunction(web3, network, amount) {
+  // Switch wallet to desired network
+  await switchNetwork(web3, network);
+
+  // Get contract instance
+  const contractInstance = await new web3.eth.Contract(donationAbi, donationAddresses[network]);
+
+  let gas;
+  let gasPrice;
+  try {
+      gasPrice = await web3.eth.getGasPrice();
+  } catch (e) {
+    console.log("Could not estimate gas price: ", e)
+  }
+
+  try {
+      gas = await contractInstance.methods.sendTo(recipient, 0, '').estimateGas({from: connectedAccount, value: amount.toString()});
+  } catch (e) {
+      console.log("Could not estimate gas: ", e);
+  }
+    console.log("Gas: ", gas)
+    console.log("GasPrice: ", gasPrice)
+    console.log("Recipient: ", recipient)
+    console.log("Sender: ", connectedAccount)
+  // Call function and send transaction
+  const result = await contractInstance.methods.sendTo(recipientAddress, 0, '').send({ from: connectedAccount, gas: gas, gasPrice: gasPrice });
+
+  return ;
+}
+
+
 window.addEventListener('load', async () => {
     init()
 });

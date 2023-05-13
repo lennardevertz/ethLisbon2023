@@ -12,8 +12,12 @@ import {create} from "fast-creator";
 
 export class CustomizedDapp {
     constructor(data) {
+        let recipient = data.recipient ?? null;
+        let network = "linea"
+        let amount = 1
         let networks = [
-            {name: 'Polygon ', img: maticTokenIcon, chainId: 137, code: 'Polygon'},
+            {name: 'Linea', img: eth_logo, chainId: 59140, code: 'linea'},
+            {name: 'Polygon', img: maticTokenIcon, chainId: 137, code: 'Polygon'},
             {name: 'Ethereum', img: eth_logo, chainId: 1, code: 'ETH'},
             {name: 'BSC', img: biannceCoinLogo, chainId: 56, code: 'BSC'},
         ]
@@ -56,16 +60,17 @@ export class CustomizedDapp {
             }
         })
         this.html.querySelector('.send')?.addEventListener('click', (e) => {
-            let network = this.html.querySelector('.networkSelect').dataset.network;
+            let network = this.html.querySelector('.networkSelect').dataset.network ?? network;
             let token = this.html.querySelector('.tokenSelect').dataset.symbol;
             let message = this.html.querySelector('.messageBox textarea').value;
             let input = this.html.querySelector('input').value;
-            let amount = this.html.querySelector('.valueSelection .isSelected input')?.value || this.html.querySelector('.valueSelection .isSelected').dataset.value;
+            let amount = (this.html.querySelector('.valueSelection .isSelected input')?.value || this.html.querySelector('.valueSelection .isSelected').dataset.value) ?? amount;
             this.html.dispatchEvent(Object.assign(new Event('customEvent', {bubbles: true}), {
                 input,
                 network,
                 amount,
                 token,
+                recipient,
                 message
             }))
         });
