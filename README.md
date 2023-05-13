@@ -92,3 +92,4 @@ For Extension
 Other
 - I am using [Chainlink price feeds](https://github.com/lennardevertz/ethLisbon2023/blob/main/website/index.js) to get the current price of ETH.
 - Contracts deployed on Optimism Mainnet + Testnet, Polygon zkEVM testnet, Linea, Mantle and Scroll (see links in above table)
+- Optimism contracts implement AttestationStation v1 contract and attests a that the donor is a public goods supporter

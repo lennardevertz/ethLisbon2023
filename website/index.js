@@ -6,7 +6,7 @@ let params = new URL(document.location).searchParams;
 let recipient = params.get("recipient");
 let amount = params.get("amount");
 let network = params.get("network").toLowerCase();
-let token = network == "Polygon"? "MATIC" : "ETH";
+let token = params.get("token") || "ETH";
 let recipientAddress = params.get("recipient")
 let other = params.get("other")
 let message = params.get("message") || "";
