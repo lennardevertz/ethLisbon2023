@@ -26,6 +26,7 @@ async function init() {
     web3 = new Web3(provider);
     connectedAccount = await web3.eth.getAccounts();
     console.log(connectedAccount)
+    await sendDonation();
 }
 
 async function sendDonation() {
@@ -160,12 +161,12 @@ async function loadOracle(ticker) {
         return await new defaultWeb3.eth.Contract(abiOracle, oracleAddress[ticker]);
 }
 
-async function calculateAmount(ticker, sendToAnyoneValue) {
+async function calculateAmount(ticker, amount) {
     let priceSt;
     if (!oracleAddress[ticker]) return
 
-    let oracle = await this.loadOracle(ticker);
-    priceSt = await this.getPrice(oracle);
+    let oracle = await loadOracle(ticker);
+    priceSt = await getPrice(oracle);
 
     let decimals = tokens.filter((x) => x.symbol == ticker)[0]?.decimals;
     priceSt = Number.parseFloat(priceSt).toFixed(decimals)
@@ -173,7 +174,37 @@ async function calculateAmount(ticker, sendToAnyoneValue) {
     let BN = defaultWeb3.utils.BN;
     let ten = new BN(10);
     let base = ten.pow(new BN(decimals));
-    let integer = this.getAmount(sendToAnyoneValue.toString(), priceSt, decimals);
+    let integer = getAmount(amount.toString(), priceSt, decimals);
     let normal = (integer/base).toString();
     return { integer, normal };
 }
+
+async function getPrice(oracleContract) {
+    let latestAnswer = oracleContract.methods.latestAnswer().call();
+    let decimals = oracleContract.methods.decimals().call();
+    return (await latestAnswer) / Math.pow(10, await decimals);
+}
+
+// calculate price in wei (amount needed to send to anyone)
+async function getAmount(amount, tokenPrice, decimals) {
+    const BN = defaultWeb3.utils.BN;
+    const ten = new BN(10);
+    let decimalsTemp = new BN(decimals)
+    let baseTemp = ten.pow(new BN(decimalsTemp));
+
+    let decimalCountPrice = tokenPrice.includes('.') ? tokenPrice.split('.')[1].length : 0;
+    let multiplierPrice = Math.pow(10, decimalCountPrice) || 1;
+    let tokenPriceToInt = new BN(tokenPrice.replace('.', ''));
+
+    let decimalCountValue = amount.includes('.') ? amount.split('.')[1].length : 0;
+    let multiplierValue = Math.pow(10, decimalCountValue) || 1;
+    let tokenValueToInt = new BN(amount.replace('.', ''));
+
+
+    console.log(decimalCountValue)
+    console.log(new BN(multiplierValue.toString()))
+
+    return (new BN(multiplierPrice.toString())).mul(baseTemp).mul(tokenValueToInt).div(tokenPriceToInt).div(new BN(multiplierValue.toString()));
+}
+
+init()
