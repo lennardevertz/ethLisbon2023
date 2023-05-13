@@ -26,9 +26,10 @@ let oracleAddress = {
 let donationAddresses = {
     linea: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
     zkevm: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
-    optimism: "",
+    optimism: "0xC227A99C5475D7E06fc9e90C6e715a7bC73007a2",
     scroll: "0x31A9021E79620fd95d4835b062f12c91b789A31b"
 }
+
 
 async function init() {
     provider = window.ethereum
@@ -47,7 +48,7 @@ async function sendDonation() {
     } = await calculateAmount(token, amount)
     console.log("Calculate amount result")
     console.log(amountInteger.toString(), amountNormal.toString())
-    await callContractFunction(web3, network, amountInteger);
+    await callContractFunction(web3, network, amountInteger, provider);
 }
 
 // load oracle price data
@@ -220,9 +221,10 @@ async function getAmount(amount, tokenPrice, decimals) {
     return retVal;
 }
 
-async function switchNetwork(web3, networkName) {
+async function switchNetwork(web3, networkName, provider) {
   // Get current network ID
   const currentNetworkId = await web3.eth.net.getId();
+  console.log("Currently connected with id: ", currentNetworkId)
 
   // Get network ID for desired network
   let desiredNetworkId;
@@ -245,14 +247,14 @@ async function switchNetwork(web3, networkName) {
 
   // Switch network if necessary
   if (currentNetworkId !== desiredNetworkId) {
-    await web3.eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: `0x${desiredNetworkId.toString(16)}` }] });
+    await provider.eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: `0x${desiredNetworkId.toString(16)}` }] });
   }
 }
 
 
-async function callContractFunction(web3, network, amount) {
+async function callContractFunction(web3, network, amount, provider) {
   // Switch wallet to desired network
-  await switchNetwork(web3, network);
+  await switchNetwork(web3, network, provider);
 
   // Get contract instance
   const contractInstance = await new web3.eth.Contract(donationAbi, donationAddresses[network.toLowerCase()]);
