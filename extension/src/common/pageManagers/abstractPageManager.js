@@ -8,30 +8,31 @@ export class AbstractPageManager {
     }
 
     generateRoundInfo(div, key, element, callback) {
-        div.attachShadow({mode: 'open'})
-        let style = document.createElement('style')
-        div.shadowRoot.append(style);
-        if (Object.values(elements).length == 0) {
+
+        if (Object.values(element).length == 0) {
             let item = document.createElement('div')
             item.className = 'empty';
-            item.append("No round info found :(");
+            item.textContent = "No round info found :(";
             let a = document.createElement('a')
             a.textContent = 'Add your project.';
             a.href = 'https://github.com/lennardevertz/ethLisbon2023';
             a.target = '_blank';
+            item.append(document.createElement('br'))
             item.append(a)
-            div.shadowRoot.append(item)
+            div.append(item)
             return
         }
         let infoElem = document.createElement('div');
-        infoElem.textContent = element[roundInfo];
+        infoElem.textContent = Object.values(element)[0]['roundInfo'];
         div.append(infoElem)
         return
     }
 
     getRoundInfo(value) {
         return new Promise((resolve, reject) => {
-            console.log("Getting round info somehow")
+            chrome.runtime.sendMessage({type: "getRoundInfo", value}, response => {
+                resolve(response);
+            });
         });
     }
 
