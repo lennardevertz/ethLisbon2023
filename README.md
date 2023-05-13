@@ -1,4 +1,4 @@
-# ethLisbon2023
+# ETHGlobal Lisbon 2023
 ETHGlobal Lisbon 2023 Hackathon project
 
 This Repository consist of three major parts:
@@ -43,3 +43,42 @@ This Repository consist of three major parts:
 │   ├── webpack.config.js     
 ├── .gitignore             
 └── README.md
+```
+
+To use the extension locally, load the `chromium` folder into your local extensions here: `brave://extensions/`
+You can also build it with
+```commandline
+yarn
+yarn build
+```
+
+The website is hosted on `https://lennardevertz.github.io/ethLisbon2023/website/`. Note that it is just a blank html that runs a script.
+You can also build it with
+```commandline
+yarn
+yarn build
+```
+
+The contract is a tipping / donations contract. It can handle Native token and ERC20 transfers.
+
+These are contracts that are created/deployed.
+
+| Contract                              | Address                                    |
+|---------------------------------------|--------------------------------------------|
+| Linea                                 | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
+
+
+
+# Tech Stack used
+For contract development and deployment
+- Hardhat
+- truffle Dashboard
+- inspiration from [IDriss open source tipping contract](https://github.com/idriss-crypto/contracts/blob/main/src/contracts/Tipping.sol)
+
+For Website (including in the script)
+- Github Pages
+- webpack compiler
+- 
+For Extension
+- IDriss (Twitter ID lookup)
+- webpack compiler
