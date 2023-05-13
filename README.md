@@ -63,9 +63,9 @@ The contract is a tipping / donations contract. It can handle Native token and E
 
 These are contracts that are created/deployed.
 
-| Contract                              | Address                                    |
-|---------------------------------------|--------------------------------------------|
-| Linea                                 | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
+| Contract  | Address                                    |
+|-----------|--------------------------------------------|
+| [Linea](https://explorer.goerli.linea.build/address/0x31A9021E79620fd95d4835b062f12c91b789A31b) | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
 
 
 
