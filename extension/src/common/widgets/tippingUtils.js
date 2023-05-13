@@ -8,6 +8,30 @@ export const tokens = [
         "logoURI": "https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
     },
     {
+        "chainId": 1442,
+        "network": "zkEVM",
+        "name": "zkEVM",
+        "symbol": "ETH",
+        "decimals": 18,
+        "logoURI": "https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
+    },
+    {
+        "chainId": 534353,
+        "network": "Scroll",
+        "name": "Sroll",
+        "symbol": "ETH",
+        "decimals": 18,
+        "logoURI": "https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
+    },
+    {
+        "chainId": 10,
+        "network": "Optimism",
+        "name": "Optimism",
+        "symbol": "ETH",
+        "decimals": 18,
+        "logoURI": "https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
+    },
+    {
         "chainId": 59140,
         "network": "Linea",
         "name": "Ethereum",

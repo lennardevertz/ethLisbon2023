@@ -24,7 +24,10 @@ let oracleAddress = {
 
 // donation contracts ( need deployment)
 let donationAddresses = {
-    linea: "0x31A9021E79620fd95d4835b062f12c91b789A31b"
+    linea: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
+    zkevm: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
+    optimism: "",
+    scroll: "0x31A9021E79620fd95d4835b062f12c91b789A31b"
 }
 
 async function init() {
@@ -226,6 +229,15 @@ async function switchNetwork(web3, networkName) {
   switch (networkName.toLowerCase()) {
     case "linea":
       desiredNetworkId = 59140;
+      break;
+    case "zkevm":
+      desiredNetworkId = 1442;
+      break;
+    case "optimism":
+      desiredNetworkId = 10;
+      break;
+    case "scroll":
+      desiredNetworkId = 534353;
       break;
     default:
       throw new Error("Invalid network name");

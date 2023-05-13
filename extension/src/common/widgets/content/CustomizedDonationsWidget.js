@@ -17,9 +17,9 @@ export class CustomizedDapp {
         let amount = 1
         let networks = [
             {name: 'Linea', img: eth_logo, chainId: 59140, code: 'Linea'},
-            {name: 'Polygon', img: maticTokenIcon, chainId: 137, code: 'Polygon'},
-            {name: 'Ethereum', img: eth_logo, chainId: 1, code: 'ETH'},
-            {name: 'BSC', img: biannceCoinLogo, chainId: 56, code: 'BSC'},
+            {name: 'zkEVM', img: maticTokenIcon, chainId: 1442, code: 'zkEVM'},
+            {name: 'Optimism', img: eth_logo, chainId: 10, code: 'Optimism'},
+            {name: 'Scroll', img: eth_logo, chainId: 534353, code: 'Scroll'}
         ]
         if (data.tokenFilter) {
             networks = networks.filter(n => data.tokenFilter[n.code.toLowerCase()])
