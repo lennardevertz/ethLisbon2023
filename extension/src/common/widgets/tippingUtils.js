@@ -16,6 +16,14 @@ export const tokens = [
         "logoURI": "https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
     },
     {
+        "chainId": 5001,
+        "network": "Mantle",
+        "name": "Mantle",
+        "symbol": "BIT",
+        "decimals": 18,
+        "logoURI": "https://s2.coinmarketcap.com/static/img/coins/64x64/11221.png"
+    },
+    {
         "chainId": 534353,
         "network": "Scroll",
         "name": "Sroll",
@@ -24,7 +32,7 @@ export const tokens = [
         "logoURI": "https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
     },
     {
-        "chainId": 10,
+        "chainId": 420,
         "network": "Optimism",
         "name": "Optimism",
         "symbol": "ETH",

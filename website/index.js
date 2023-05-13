@@ -16,18 +16,22 @@ let web3;
 console.log(network, token, amount)
 
 const defaultWeb3 = new Web3(new Web3.providers.HttpProvider("https://polygon-rpc.com/"));
+
+// Chainlink price feed on Polygon
 let oracleAddress = {
     ETH: "0xf9680d99d6c9589e2a93a78a04a279e509205945",
     WETH: "0xf9680d99d6c9589e2a93a78a04a279e509205945",
-    MATIC: "0xab594600376ec9fd91f8e885dadf0ce036862de0"
+    MATIC: "0xab594600376ec9fd91f8e885dadf0ce036862de0",
+    BIT: "0xab594600376ec9fd91f8e885dadf0ce036862de0"
 };
 
 // donation contracts ( need deployment)
 let donationAddresses = {
     linea: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
     zkevm: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
-    optimism: "0xC227A99C5475D7E06fc9e90C6e715a7bC73007a2",
-    scroll: "0x31A9021E79620fd95d4835b062f12c91b789A31b"
+    optimism: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
+    scroll: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
+    mantle: "0x31A9021E79620fd95d4835b062f12c91b789A31b"
 }
 
 
@@ -236,10 +240,13 @@ async function switchNetwork(web3, networkName, provider) {
       desiredNetworkId = 1442;
       break;
     case "optimism":
-      desiredNetworkId = 10;
+      desiredNetworkId = 420;
       break;
     case "scroll":
       desiredNetworkId = 534353;
+      break;
+    case "mantle":
+      desiredNetworkId = 5001;
       break;
     default:
       throw new Error("Invalid network name");

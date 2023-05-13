@@ -3,6 +3,7 @@ import eth_logo from "!!url-loader!../../img/eth.png";
 import scroll_logo from "!!url-loader!../../img/scroll.ico";
 import linea_logo from "!!url-loader!../../img/linea.ico";
 import op_logo from "!!url-loader!../../img/op.ico";
+import mantle_logo from "!!url-loader!../../img/mantle.ico";
 import usdc_logo from "!!url-loader!../../img/usdc.png"
 import arrow from "!!url-loader!../../img/arrow.svg"
 import pen from "!!url-loader!../../img/pen.svg"
@@ -22,7 +23,8 @@ export class CustomizedDapp {
             {name: 'Linea', img: linea_logo, chainId: 59140, code: 'Linea'},
             {name: 'zkEVM', img: maticTokenIcon, chainId: 1442, code: 'zkEVM'},
             {name: 'Optimism', img: op_logo, chainId: 10, code: 'Optimism'},
-            {name: 'Scroll', img: scroll_logo, chainId: 534353, code: 'Scroll'}
+            {name: 'Scroll', img: scroll_logo, chainId: 534353, code: 'Scroll'},
+            {name: 'Mantle', img: mantle_logo, chainId: 5001, code: 'Mantle'}
         ]
         if (data.tokenFilter) {
             networks = networks.filter(n => data.tokenFilter[n.code.toLowerCase()])

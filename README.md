@@ -67,15 +67,16 @@ These are contracts that are created/deployed.
 |-----------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | [Linea](https://explorer.goerli.linea.build/address/0x31A9021E79620fd95d4835b062f12c91b789A31b)           | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
 | [Polygon zkEVM](https://testnet-zkevm.polygonscan.com/address/0x31a9021e79620fd95d4835b062f12c91b789a31b) | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
-| [Optimism](https://optimistic.etherscan.io/address/0xc227a99c5475d7e06fc9e90c6e715a7bc73007a2)      | 0xc227a99c5475d7e06fc9e90c6e715a7bc73007a2 |
-| [Scroll](https://blockscout.scroll.io/address/0x31A9021E79620fd95d4835b062f12c91b789A31b)        | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
+| [Optimism](https://optimistic.etherscan.io/address/0xc227a99c5475d7e06fc9e90c6e715a7bc73007a2)            | 0xc227a99c5475d7e06fc9e90c6e715a7bc73007a2 |
+| [Scroll](https://blockscout.scroll.io/address/0x31A9021E79620fd95d4835b062f12c91b789A31b)                 | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
+| [Mantle](https://explorer.testnet.mantle.xyz/address/0x31A9021E79620fd95d4835b062f12c91b789A31b)                 | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
 
 
 
 # Tech Stack used
 For contract development and deployment
 - Hardhat
-- truffle Dashboard
+- Truffle Dashboard
 - inspiration from [IDriss open source tipping contract](https://github.com/idriss-crypto/contracts/blob/main/src/contracts/Tipping.sol)
 
 For Website (including in the script)
@@ -85,3 +86,7 @@ For Website (including in the script)
 For Extension
 - IDriss (Twitter ID lookup)
 - webpack compiler
+
+Other
+- I am using [Chainlink price feeds](https://github.com/lennardevertz/ethLisbon2023/blob/main/website/index.js) to get the current price of ETH.
+- Contracts deployed on Optimism Mainnet, Polygon zkEVM testnet, Linea, Mantle and Scroll (see links in above table)
