@@ -32,7 +32,7 @@ export const tokens = [
         "logoURI": "https://s2.coinmarketcap.com/static/img/coins/32x32/1027.png"
     },
     {
-        "chainId": 420,
+        "chainId": 10,
         "network": "Optimism",
         "name": "Optimism",
         "symbol": "ETH",

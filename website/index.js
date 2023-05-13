@@ -29,7 +29,7 @@ let oracleAddress = {
 let donationAddresses = {
     linea: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
     zkevm: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
-    optimism: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
+    optimism: "0x7304b437221Cc0477F805Bdfb1C571e762cE528a",
     scroll: "0x31A9021E79620fd95d4835b062f12c91b789A31b",
     mantle: "0x31A9021E79620fd95d4835b062f12c91b789A31b"
 }
@@ -240,7 +240,7 @@ async function switchNetwork(web3, networkName, provider) {
       desiredNetworkId = 1442;
       break;
     case "optimism":
-      desiredNetworkId = 420;
+      desiredNetworkId = 10;
       break;
     case "scroll":
       desiredNetworkId = 534353;

@@ -67,9 +67,10 @@ These are contracts that are created/deployed.
 |-----------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | [Linea](https://explorer.goerli.linea.build/address/0x31A9021E79620fd95d4835b062f12c91b789A31b)           | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
 | [Polygon zkEVM](https://testnet-zkevm.polygonscan.com/address/0x31a9021e79620fd95d4835b062f12c91b789a31b) | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
-| [Optimism](https://optimistic.etherscan.io/address/0xc227a99c5475d7e06fc9e90c6e715a7bc73007a2)            | 0xc227a99c5475d7e06fc9e90c6e715a7bc73007a2 |
+| [Optimism](https://optimistic.etherscan.io/address/0x7304b437221cc0477f805bdfb1c571e762ce528a)            | 0x7304b437221Cc0477F805Bdfb1C571e762cE528a |
+| [Optimism Testnet](https://goerli-optimism.etherscan.io/address/0x31a9021e79620fd95d4835b062f12c91b789a31b)    | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
 | [Scroll](https://blockscout.scroll.io/address/0x31A9021E79620fd95d4835b062f12c91b789A31b)                 | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
-| [Mantle](https://explorer.testnet.mantle.xyz/address/0x31A9021E79620fd95d4835b062f12c91b789A31b)                 | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
+| [Mantle](https://explorer.testnet.mantle.xyz/address/0x31A9021E79620fd95d4835b062f12c91b789A31b)          | 0x31A9021E79620fd95d4835b062f12c91b789A31b |
 
 
 
@@ -77,6 +78,7 @@ These are contracts that are created/deployed.
 For contract development and deployment
 - Hardhat
 - Truffle Dashboard
+- The Optimism contract natively integrates the [Attestation Station](https://github.com/ethereum-optimism/optimism/blob/willc/alpha-final/packages/atst/docs/sdk.md), which attest donations on-chain and fully automated
 - inspiration from [IDriss open source tipping contract](https://github.com/idriss-crypto/contracts/blob/main/src/contracts/Tipping.sol)
 
 For Website (including in the script)
@@ -89,4 +91,4 @@ For Extension
 
 Other
 - I am using [Chainlink price feeds](https://github.com/lennardevertz/ethLisbon2023/blob/main/website/index.js) to get the current price of ETH.
-- Contracts deployed on Optimism Mainnet, Polygon zkEVM testnet, Linea, Mantle and Scroll (see links in above table)
+- Contracts deployed on Optimism Mainnet + Testnet, Polygon zkEVM testnet, Linea, Mantle and Scroll (see links in above table)
