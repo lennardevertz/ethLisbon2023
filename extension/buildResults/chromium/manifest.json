@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "ETHGlobal Lisbon 2023",
+  "version": "1.0.0",
+  "description": "Brings web3 into web2",
+  "author": "@lennardevertz",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "contentScript.js"
+      ],
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "service_worker": "serviceWorker.js"
+  },
+  "homepage_url": "https://github.com/lennardevertz/ethLisbon2023",
+  "permissions": [
+    "contextMenus",
+    "tabs",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "standalone.html"
+  }
+}

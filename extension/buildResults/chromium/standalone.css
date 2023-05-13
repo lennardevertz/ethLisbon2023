@@ -1,0 +1,118 @@
+html {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+header img {
+    width: 70%;
+    max-width: 70vh;
+}
+
+section {
+    flex: 1 0 auto;
+    padding: 40px;
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+div#roundInfo {
+    margin: 5px 5px 5px 5px;
+}
+
+div#InputHeader {
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.428571429;
+    color: #333333;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    outline: none;
+}
+input[type="text"]:focus {
+  border: 1px solid #a6a6a6;
+}
+
+footer a {
+    color: #000000;
+    display: block;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.enabled {
+    text-align: right;
+    color: #000000;
+    margin: 10px;
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+    appearance: none;
+    height: 10px;
+    width: 30px;
+    border-radius: 5px;
+    background: #bdc1c6;
+    position: relative;
+    vertical-align: center;
+    margin: 0 15px;
+}
+
+input[type="checkbox"]::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    display: block;
+    position: absolute;
+    left: -10px;
+    top: -5px;
+    background: #000000;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 40%)
+}
+
+input[type="checkbox"]:not(.noTransition), input[type="checkbox"]:not(.noTransition)::before {
+    transition: 300ms ease all;
+}
+
+input[type="checkbox"]:checked {
+    background: #11dd7488;
+
+}
+
+input[type="checkbox"]:checked::before {
+    background: #11dd74;
+    left: 20px;
+}
