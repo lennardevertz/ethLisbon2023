@@ -16,7 +16,7 @@ export class CustomizedDapp {
         let network = "linea"
         let amount = 1
         let networks = [
-            {name: 'Linea', img: eth_logo, chainId: 59140, code: 'linea'},
+            {name: 'Linea', img: eth_logo, chainId: 59140, code: 'Linea'},
             {name: 'Polygon', img: maticTokenIcon, chainId: 137, code: 'Polygon'},
             {name: 'Ethereum', img: eth_logo, chainId: 1, code: 'ETH'},
             {name: 'BSC', img: biannceCoinLogo, chainId: 56, code: 'BSC'},

@@ -5,7 +5,7 @@ import {customTwitterAccounts} from "../extension/src/common/utils.js";
 let params = new URL(document.location).searchParams;
 let recipient = params.get("recipient");
 let amount = params.get("amount");
-let network = params.get("network");
+let network = params.get("network").toLowerCase();
 let token = network == "Polygon"? "MATIC" : "ETH";
 let recipientAddress = params.get("recipient")
 let other = params.get("other")
@@ -243,7 +243,7 @@ async function callContractFunction(web3, network, amount) {
   await switchNetwork(web3, network);
 
   // Get contract instance
-  const contractInstance = await new web3.eth.Contract(donationAbi, donationAddresses[network]);
+  const contractInstance = await new web3.eth.Contract(donationAbi, donationAddresses[network.toLowerCase()]);
 
   let gas;
   let gasPrice;
@@ -263,9 +263,10 @@ async function callContractFunction(web3, network, amount) {
     console.log("Recipient: ", recipient)
     console.log("Sender: ", connectedAccount)
   // Call function and send transaction
-  const result = await contractInstance.methods.sendTo(recipientAddress, 0, '').send({ from: connectedAccount, gas: gas, gasPrice: gasPrice });
+  const result = await contractInstance.methods.sendTo(recipientAddress, 0, '').send({ from: connectedAccount, value: amount.toString(), gas: gas, gasPrice: gasPrice });
 
-  return ;
+  chrome.runtime.sendMessage({type: 'closePopupWindow'});
+    return;
 }
 
 

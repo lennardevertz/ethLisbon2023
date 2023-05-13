@@ -25,7 +25,9 @@ export class CustomTwitter {
                 recipient: e.recipient ?? null,
                 other: e.other ?? null
             }
-            window.open(data['hostURL'] + Object.entries(params).filter(([k, v]) => v).map(x => encodeURIComponent(x[0]) + '=' + encodeURIComponent(x[1])).join('&'))
+            let targetUrl = data['hostURL'] + Object.entries(params).filter(([k, v]) => v).map(x => encodeURIComponent(x[0]) + '=' + encodeURIComponent(x[1])).join('&')
+            chrome.runtime.sendMessage({ type: 'openPopupWindow', value: targetUrl });
+//            window.open()
         })
     }
 }
