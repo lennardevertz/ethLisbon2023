@@ -1,4 +1,5 @@
-# ETHGlobal Lisbon 2023
+# Donation Station
+## ETHGlobal Lisbon 2023
 ETHGlobal Lisbon 2023 Hackathon project
 
 This Repository consist of three major parts:
