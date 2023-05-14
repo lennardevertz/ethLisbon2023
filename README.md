@@ -84,7 +84,7 @@ For contract development and deployment
 For Website (including in the script)
 - Github Pages
 - webpack compiler
-- 
+
 For Extension
 - IDriss (Twitter ID lookup)
 - webpack compiler
